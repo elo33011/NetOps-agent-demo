@@ -8,6 +8,10 @@
                                 └─ (hq, dc dual-homed; br1 on isp1; br2 on isp2)
 ```
 
+<div style="flex: 1;">
+  <img src="wanlab_topology.png" width="1200">
+</div>
+  
 | Site | ASN   | LAN         | Uplinks                    |
 |------|-------|-------------|----------------------------|
 | hq   | 65001 | 10.1.0.0/24 | isp1 (primary), isp2       |
