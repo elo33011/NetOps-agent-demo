@@ -1,15 +1,8 @@
 # NetOps-agent-demo
 # wanlab: multi-site WAN on Containerlab + FRR
 
-```
-        hq-host ─ hq-edge ═╦═ isp1 ══════ isp2 ═╦═ ...
-        dc-host ─ dc-edge ═╣   │ (iBGP, AS65000) │
-       br1-host ─ br1-edge ─╝   │                 └─ br2-edge ─ br2-host
-                                └─ (hq, dc dual-homed; br1 on isp1; br2 on isp2)
-```
-
 <div style="flex: 1;">
-  <img src="wanlab_topology.png" width="1200">
+  <img src="wanlab_topology.png" width="800">
 </div>
   
 | Site | ASN   | LAN         | Uplinks                    |
