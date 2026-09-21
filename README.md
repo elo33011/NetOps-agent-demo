@@ -5,17 +5,9 @@
   <img src="wanlab_topology.png" width="800">
 </div>
   
-| Site | ASN   | LAN         | Uplinks                    |
-|------|-------|-------------|----------------------------|
-| hq   | 65001 | 10.1.0.0/24 | isp1 (primary), isp2       |
-| dc   | 65002 | 10.2.0.0/24 | isp1 (primary), isp2       |
-| br1  | 65003 | 10.3.0.0/24 | isp1                       |
-| br2  | 65004 | 10.4.0.0/24 | isp2                       |
-
 Routing: each edge runs eBGP to the ISP (AS65000). ISPs peer iBGP with next-hop-self.
 Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 (no transit). Hosts sit at 10.X.0.10.
-
 
 # How to Run it
 
