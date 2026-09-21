@@ -104,5 +104,4 @@ done
 | `scripts/faults.sh` | Injects and heals faults | Yes |
 | `tools/lab_cli.py` | Read-only `show`, `ping` and `traceroute` that the agent uses | Yes |
 | `agent_ollama.py` | The chat agent for Ollama (latest version) | Yes |
-| `agent.py`, `agent_openai.py` | Claude and other-provider versions | No, ignore them |
 | `agent_audit.log` | Created by the agent; every command it ran | Created automatically |
