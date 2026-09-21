@@ -1,5 +1,12 @@
-# NetOps-agent-demo
-# wanlab: multi-site WAN on Containerlab + FRR
+# NetOps Agent Demo
+
+This is a show case of a Network Operation Agent supporting a network topology.
+- Network Ops Agent is a chat agent
+- Ask questions about the network health
+- Request sent to the model (We use Ollama free cloud model here)
+- Model request to use the tool and find out the answer
+
+# Network Topology
 
 <div style="flex: 1;">
   <img src="wanlab_topology.png" width="800">
