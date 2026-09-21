@@ -1,0 +1,105 @@
+name: wanlab
+
+mgmt:
+  network: wanlab-mgmt
+  ipv4-subnet: 172.20.30.0/24
+
+topology:
+  nodes:
+    isp1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/isp1/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.0.1/30 dev eth1
+        - ip addr add 172.16.1.1/30 dev eth2
+        - ip addr add 172.16.3.1/30 dev eth3
+        - ip addr add 172.16.5.1/30 dev eth4
+    isp2:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/isp2/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.0.2/30 dev eth1
+        - ip addr add 172.16.2.1/30 dev eth2
+        - ip addr add 172.16.4.1/30 dev eth3
+        - ip addr add 172.16.6.1/30 dev eth4
+    hq-edge:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/hq-edge/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.1.2/30 dev eth1
+        - ip addr add 172.16.2.2/30 dev eth2
+        - ip addr add 10.1.0.1/24 dev eth3
+    hq-host:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.1.0.10/24 dev eth1
+        - ip route replace default via 10.1.0.1
+    dc-edge:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/dc-edge/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.3.2/30 dev eth1
+        - ip addr add 172.16.4.2/30 dev eth2
+        - ip addr add 10.2.0.1/24 dev eth3
+    dc-host:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.2.0.10/24 dev eth1
+        - ip route replace default via 10.2.0.1
+    br1-edge:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/br1-edge/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.5.2/30 dev eth1
+        - ip addr add 10.3.0.1/24 dev eth2
+    br1-host:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.3.0.10/24 dev eth1
+        - ip route replace default via 10.3.0.1
+    br2-edge:
+      kind: linux
+      image: quay.io/frrouting/frr:10.2.1
+      binds:
+        - configs/br2-edge/frr.conf:/etc/frr/frr.conf
+        - configs/daemons:/etc/frr/daemons
+      exec:
+        - ip addr add 172.16.6.2/30 dev eth1
+        - ip addr add 10.4.0.1/24 dev eth2
+    br2-host:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.4.0.10/24 dev eth1
+        - ip route replace default via 10.4.0.1
+
+  links:
+    - endpoints: ["isp1:eth1", "isp2:eth1"]
+    - endpoints: ["hq-edge:eth1", "isp1:eth2"]
+    - endpoints: ["hq-edge:eth2", "isp2:eth2"]
+    - endpoints: ["hq-edge:eth3", "hq-host:eth1"]
+    - endpoints: ["dc-edge:eth1", "isp1:eth3"]
+    - endpoints: ["dc-edge:eth2", "isp2:eth3"]
+    - endpoints: ["dc-edge:eth3", "dc-host:eth1"]
+    - endpoints: ["br1-edge:eth1", "isp1:eth4"]
+    - endpoints: ["br1-edge:eth2", "br1-host:eth1"]
+    - endpoints: ["br2-edge:eth1", "isp2:eth4"]
+    - endpoints: ["br2-edge:eth2", "br2-host:eth1"]

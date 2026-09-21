@@ -1,0 +1,51 @@
+---
+br1-edge:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.4
+br1-host:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.9
+br2-edge:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.7
+br2-host:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.3
+dc-edge:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.5
+dc-host:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.10
+hq-edge:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.8
+hq-host:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.11
+isp1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.2
+isp2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.30.6

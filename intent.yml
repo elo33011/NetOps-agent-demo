@@ -1,0 +1,37 @@
+# Single source of truth for the lab. generate.py builds the containerlab
+# topology and every FRR config from this file. The chat agent will later
+# compare "intent" (this file) against "actual" (live show commands).
+lab_name: wanlab
+frr_image: quay.io/frrouting/frr:10.2.1
+host_image: ghcr.io/srl-labs/network-multitool
+mgmt_subnet: 172.20.30.0/24
+
+isp:
+  asn: 65000
+  core_link: 172.16.0.0/30        # isp1 = .1, isp2 = .2
+
+# uplinks: order defines interface numbers (eth1, eth2, ...).
+# primary: true  => inbound local-preference 200 (preferred exit).
+sites:
+  - name: hq
+    asn: 65001
+    lan: 10.1.0.0/24
+    uplinks:
+      - {isp: isp1, subnet: 172.16.1.0/30, primary: true}
+      - {isp: isp2, subnet: 172.16.2.0/30}
+  - name: dc
+    asn: 65002
+    lan: 10.2.0.0/24
+    uplinks:
+      - {isp: isp1, subnet: 172.16.3.0/30, primary: true}
+      - {isp: isp2, subnet: 172.16.4.0/30}
+  - name: br1
+    asn: 65003
+    lan: 10.3.0.0/24
+    uplinks:
+      - {isp: isp1, subnet: 172.16.5.0/30}
+  - name: br2
+    asn: 65004
+    lan: 10.4.0.0/24
+    uplinks:
+      - {isp: isp2, subnet: 172.16.6.0/30}

@@ -1,0 +1,651 @@
+{
+  "name": "wanlab",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "wanlab-mgmt",
+        "bridge": "br-7d900487f868",
+        "ipv4-subnet": "172.20.30.0/24",
+        "ipv4-gw": "172.20.30.1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "br1-edge": {
+      "index": "0",
+      "shortname": "br1-edge",
+      "longname": "clab-wanlab-br1-edge",
+      "fqdn": "br1-edge.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/br1-edge",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/br1-edge",
+        "clab-node-longname": "clab-wanlab-br1-edge",
+        "clab-node-name": "br1-edge",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "br1-host": {
+      "index": "1",
+      "shortname": "br1-host",
+      "longname": "clab-wanlab-br1-host",
+      "fqdn": "br1-host.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/br1-host",
+      "kind": "linux",
+      "image": "ghcr.io/srl-labs/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.9",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/br1-host",
+        "clab-node-longname": "clab-wanlab-br1-host",
+        "clab-node-name": "br1-host",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "br2-edge": {
+      "index": "2",
+      "shortname": "br2-edge",
+      "longname": "clab-wanlab-br2-edge",
+      "fqdn": "br2-edge.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/br2-edge",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.7",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/br2-edge",
+        "clab-node-longname": "clab-wanlab-br2-edge",
+        "clab-node-name": "br2-edge",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "br2-host": {
+      "index": "3",
+      "shortname": "br2-host",
+      "longname": "clab-wanlab-br2-host",
+      "fqdn": "br2-host.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/br2-host",
+      "kind": "linux",
+      "image": "ghcr.io/srl-labs/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/br2-host",
+        "clab-node-longname": "clab-wanlab-br2-host",
+        "clab-node-name": "br2-host",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 8080,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "dc-edge": {
+      "index": "4",
+      "shortname": "dc-edge",
+      "longname": "clab-wanlab-dc-edge",
+      "fqdn": "dc-edge.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/dc-edge",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/dc-edge",
+        "clab-node-longname": "clab-wanlab-dc-edge",
+        "clab-node-name": "dc-edge",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "dc-host": {
+      "index": "5",
+      "shortname": "dc-host",
+      "longname": "clab-wanlab-dc-host",
+      "fqdn": "dc-host.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/dc-host",
+      "kind": "linux",
+      "image": "ghcr.io/srl-labs/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.10",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/dc-host",
+        "clab-node-longname": "clab-wanlab-dc-host",
+        "clab-node-name": "dc-host",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 8080,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "hq-edge": {
+      "index": "6",
+      "shortname": "hq-edge",
+      "longname": "clab-wanlab-hq-edge",
+      "fqdn": "hq-edge.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/hq-edge",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.8",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/hq-edge",
+        "clab-node-longname": "clab-wanlab-hq-edge",
+        "clab-node-name": "hq-edge",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "hq-host": {
+      "index": "7",
+      "shortname": "hq-host",
+      "longname": "clab-wanlab-hq-host",
+      "fqdn": "hq-host.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/hq-host",
+      "kind": "linux",
+      "image": "ghcr.io/srl-labs/network-multitool",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.11",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/hq-host",
+        "clab-node-longname": "clab-wanlab-hq-host",
+        "clab-node-name": "hq-host",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 11443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 1180,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "",
+          "host-port": 0,
+          "port": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "isp1": {
+      "index": "8",
+      "shortname": "isp1",
+      "longname": "clab-wanlab-isp1",
+      "fqdn": "isp1.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/isp1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/isp1",
+        "clab-node-longname": "clab-wanlab-isp1",
+        "clab-node-name": "isp1",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    },
+    "isp2": {
+      "index": "9",
+      "shortname": "isp2",
+      "longname": "clab-wanlab-isp2",
+      "fqdn": "isp2.wanlab.io",
+      "group": "",
+      "labdir": "/home/elo/wan-lab/clab-wanlab/isp2",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:10.2.1",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.30.6",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-7d900487f868",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/elo/wan-lab/clab-wanlab/isp2",
+        "clab-node-longname": "clab-wanlab-isp2",
+        "clab-node-name": "isp2",
+        "clab-node-type": "",
+        "clab-owner": "elo",
+        "clab-topo-file": "/home/elo/wan-lab/wanlab.clab.yml",
+        "containerlab": "wanlab"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "isp1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:75:5a:eb",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:28:c1:ba",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "hq-edge",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:da:88:e7",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:0d:71:4f",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "hq-edge",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:34:f4:e5",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp2",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:df:40:66",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "hq-edge",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:93:06:d0",
+          "peer": "z"
+        },
+        "z": {
+          "node": "hq-host",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:91:97:b1",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "dc-edge",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:e8:19:ca",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp1",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:71:e0:33",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "dc-edge",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:38:9a:d9",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp2",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:9e:54:16",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "dc-edge",
+          "interface": "eth3",
+          "mac": "aa:c1:ab:f5:a3:53",
+          "peer": "z"
+        },
+        "z": {
+          "node": "dc-host",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:c9:77:d9",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "br1-edge",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:56:54:89",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp1",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:71:62:f4",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "br1-edge",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:ff:38:25",
+          "peer": "z"
+        },
+        "z": {
+          "node": "br1-host",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:cb:64:8c",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "br2-edge",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:99:83:67",
+          "peer": "z"
+        },
+        "z": {
+          "node": "isp2",
+          "interface": "eth4",
+          "mac": "aa:c1:ab:cc:2b:f0",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "br2-edge",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:36:d5:e8",
+          "peer": "z"
+        },
+        "z": {
+          "node": "br2-host",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:47:11:82",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}
