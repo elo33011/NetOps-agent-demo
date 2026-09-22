@@ -1,10 +1,23 @@
 # NetOps Agent Demo
 
-This is a show case of a Network Operation Agent supporting a network topology.
+This is a show case of a Network Operation Agent supporting a network topology. Why it helps
+
+
 - Network Ops Agent is a chat agent
 - Ask questions about the network health
 - Request sent to the model (We use Ollama free cloud model here)
 - Model request to use the tool and find out the answer
+
+Any agent, inclulding this one, is a loop: User prompt → model thinks → asks help via tools → feed result back → repeat until it answers → response back to User. 
+Guardrail (safety, memory, UI) is layered on that loop, which is harness
+
+```
+User (chat) ─▶ agent loop ─▶ Model API ◀─ system prompt + intent.yml
+                 │  ▲
+        tool call│  │result
+                 ▼  │
+           tools/lab_cli.py ─▶ docker exec ─▶ vtysh on FRR nodes (containered network devices)
+```
 
 # Network Topology
 
