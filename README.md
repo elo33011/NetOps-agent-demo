@@ -5,7 +5,7 @@ This is a simple show case of a Network Operation Agent supporting a network top
 ## Concept
 
 Any agent, inclulding this one, is a loop: User prompt → model thinks → asks help via tools → feed result back → repeat until it answers → response back to User. 
-Guardrail (safety, memory, UI) is layered on that loop, which is harness
+Guardrail (safety, memory, UI) is layered on that loop.
 
 ```
 User (chat) ─▶ agent loop ─▶ Model API ◀─ system prompt + intent.yml
