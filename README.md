@@ -126,8 +126,7 @@ for n in hq-edge dc-edge br1-edge br2-edge isp1 isp2; do
 done
 ```
 
-
-## Scripts in `~/wan-lab`
+## Repository Content
 
 | File | What it does | Do you need it? |
 |---|---|---|
@@ -138,5 +137,5 @@ done
 | `scripts/verify.sh` | Health check: BGP sessions and host reachability | Yes |
 | `scripts/faults.sh` | Injects and heals faults | Yes |
 | `tools/lab_cli.py` | Read-only `show`, `ping` and `traceroute` that the agent uses | Yes |
-| `agent_ollama.py` | The chat agent for Ollama (latest version) | Yes |
+| `agent_ollama.py` | The chat agent based on Ollama supplied models | Yes |
 | `agent_audit.log` | Created by the agent; every command it ran | Created automatically |
