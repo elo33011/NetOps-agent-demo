@@ -27,6 +27,9 @@ Routing setup: each edge runs eBGP to the ISP (AS65000). ISPs peer iBGP with nex
 Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 (no transit). Hosts sit at 10.X.0.10.
 
+## How the Demo works ?
+
+
 
 
 
