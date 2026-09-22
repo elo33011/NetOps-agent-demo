@@ -46,20 +46,21 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 # How to Run it
 
-Part 1: Prerequisites (done once)
-You already have these, so just confirm:
+## Step 1: Install docker & containerlab in your shell environment
+Once it is done, confirm this is in place.
 ```bash
 docker run hello-world          # Docker works in WSL2
 containerlab version            # Containerlab works
 ```
-Part 2: The lab
-Get the files. Unzip `wan-lab.zip` (the latest version, which includes the `vtysh.conf` fix) into your WSL home folder:
+
+## Step 2: Build the network topology
+Get the files. Unzip `wan-lab.zip` your home folder:
 ```bash
    cd ~
    unzip wan-lab.zip            # sudo apt install -y unzip, if needed
    cd wan-lab
    ```
-Deploy the lab:
+Deploy the network topology:
 ```bash
    sudo containerlab deploy -t wanlab.clab.yml
    ```
@@ -67,8 +68,10 @@ Check it's healthy:
 ```bash
    ./scripts/verify.sh
    ```
+
 Expect 6 BGP sessions `Established` and 12 host pairs `OK`. BGP can take up to 30 seconds to come up after deploy.
-Part 3: Python environment
+
+## Step 3: Python environment
 Create and activate a venv:
 ```bash
    sudo apt install -y python3-venv     # only if the next line errors
@@ -79,13 +82,11 @@ Install the packages:
 ```bash
    pip install ollama pyyaml
    ```
-Part 4: The agent
-Copy the latest `agent_ollama.py` into `~/wan-lab/`, next to `tools/` and `intent.yml`. It is not in the zip. Confirm it's the right version:
-```bash
-   grep OLLAMA_API_KEY agent_ollama.py
-   ```
+
+## Step 4: Setup the agent
+
 Create an Ollama API key in your Ollama account settings (ollama.com/settings/keys) and copy it.
-Set your environment variables. Repeat this in every new terminal:
+Set your environment variables:
 ```bash
    export OLLAMA_API_KEY="your-key"
    export OLLAMA_MODEL=gpt-oss:20b
@@ -95,7 +96,8 @@ See which models your account can use, and change `OLLAMA_MODEL` if `gpt-oss:20b
 ```bash
    curl -H "Authorization: Bearer $OLLAMA_API_KEY" https://ollama.com/api/tags
    ```
-Part 5: First test (two terminals)
+
+## Step 5: Run the Demo via two terminals
 Terminal 1: inject a fault.
     ```bash
     cd ~/wan-lab
