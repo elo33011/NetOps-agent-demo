@@ -1,12 +1,8 @@
 # NetOps Agent Demo
 
-This is a show case of a Network Operation Agent supporting a network topology. Why it helps
+This is a simple show case of a Network Operation Agent supporting a network topology. By going through a chat prompt, you ask the agent to perform diagnosis on the network topology it supports.
 
-
-- Network Ops Agent is a chat agent
-- Ask questions about the network health
-- Request sent to the model (We use Ollama free cloud model here)
-- Model request to use the tool and find out the answer
+## Concept
 
 Any agent, inclulding this one, is a loop: User prompt → model thinks → asks help via tools → feed result back → repeat until it answers → response back to User. 
 Guardrail (safety, memory, UI) is layered on that loop, which is harness
@@ -19,15 +15,21 @@ User (chat) ─▶ agent loop ─▶ Model API ◀─ system prompt + intent.yml
            tools/lab_cli.py ─▶ docker exec ─▶ vtysh on FRR nodes (containered network devices)
 ```
 
-# Network Topology
+## Network Topology
+
+A simple network topology consisting of four sites (HQ, DC, Branch 1, Branch 2), each with an FRR edge router and a test host, connect via eBGP to two ISP routers (AS65000, iBGP between them). HQ and DC are dual-homed to both ISPs, preferring ISP1. Branch 1 uses ISP1 only, Branch 2 uses ISP2 only. No site provides transit.
 
 <div style="flex: 1;">
   <img src="wanlab_topology.png" width="800">
 </div>
   
-Routing: each edge runs eBGP to the ISP (AS65000). ISPs peer iBGP with next-hop-self.
+Routing setup: each edge runs eBGP to the ISP (AS65000). ISPs peer iBGP with next-hop-self.
 Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 (no transit). Hosts sit at 10.X.0.10.
+
+
+
+
 
 # How to Run it
 
