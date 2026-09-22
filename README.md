@@ -98,11 +98,13 @@ See which models your account can use, and change `OLLAMA_MODEL` if `gpt-oss:20b
    ```
 
 ## Step 5: Run the Demo via two terminals
+
 Terminal 1: inject a fault.
     ```bash
     cd ~/wan-lab
     ./scripts/faults.sh inject wrong-asn
     ```
+
 Terminal 2: start the agent and ask.
     ```bash
     cd ~/wan-lab && source .venv/bin/activate
