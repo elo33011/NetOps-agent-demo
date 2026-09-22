@@ -116,11 +116,12 @@ Terminal 2: start the agent and ask.
 
 At `you>`, type: `hq -> br1 fail, can you tell me why?`
 
+Terminal 1: review and heal.
+
 ```bash
     cat agent_audit.log
     ./scripts/faults.sh heal wrong-asn
 ```
-Terminal 1: review and heal.
 
 ```bash
     cd ~/wan-lab
