@@ -29,10 +29,20 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 ## How the Demo works ?
 
+- The network has been running on the container lab in a healthy state
+- All devices are manually asseessbile via cli (docker exec)
+- We will ask the agent to confirm 
+- Inject a few changes to simulate a failure (by running the failure injection scripts)
 
+| Fault | What breaks | Symptom |
+|---|---|---|
+| `uplink-down` | HQ's link to ISP1 goes down | HQ fails over to ISP2 as its exit |
+| `wrong-asn` | Branch 1's neighbor `remote-as` is changed to 65099 (should be 65000) | BGP session to ISP1 stuck `Idle`; Branch 1 isolated from every other site |
+| `missing-network` | Branch 2's LAN prefix is withdrawn from BGP | BGP session stays `Established`, but Branch 2's LAN is unreachable from everywhere |
+| `latency` | 200 ms delay and 20% loss added to DC's ISP1 link | DC traffic is slow and lossy, but BGP sessions look fine |
 
-
-
+- We then ask the agent to perform troubleshooting
+- Revert the changes to restore. (by running the failure recovery scripts)
 
 # How to Run it
 
