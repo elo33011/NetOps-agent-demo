@@ -100,34 +100,26 @@ See which models your account can use, and change `OLLAMA_MODEL` if `gpt-oss:20b
 ## Step 5: Run the Demo via two terminals
 
 Terminal 1: inject a fault.
-    ```bash
+
+```bash
     cd ~/wan-lab
     ./scripts/faults.sh inject wrong-asn
-    ```
+```
 
 Terminal 2: start the agent and ask.
-    ```bash
+
+```bash
     cd ~/wan-lab && source .venv/bin/activate
     # re-export the three variables from step 8 here
     python3 agent_ollama.py
-    ```
+```
+
 At `you>`, type: `hq -> br1 fail, can you tell me why?`
 Terminal 1: review and heal.
-    ```bash
+
+```bash
     cat agent_audit.log
     ./scripts/faults.sh heal wrong-asn
-    ```
-Not needed on this path
-Installing Ollama in WSL
-`ollama serve`
-`ollama signin`
-`agent.py` and `agent_openai.py`
-If you deployed the lab from the older zip
-Your running lab still prints `vtysh.conf` warnings. Either redeploy from the new zip, or run this once:
-```bash
-for n in hq-edge dc-edge br1-edge br2-edge isp1 isp2; do
-  docker exec clab-wanlab-$n touch /etc/frr/vtysh.conf
-done
 ```
 
 ## Repository Content
