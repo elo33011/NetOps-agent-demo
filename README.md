@@ -72,6 +72,7 @@ Check it's healthy:
 Expect 6 BGP sessions `Established` and 12 host pairs `OK`. BGP can take up to 30 seconds to come up after deploy.
 
 <details>
+  <summary>Expected Results</summary>
 
 ```
 == hq-edge
