@@ -1,6 +1,6 @@
 # NetOps Agent Demo
 
-This is a simple show case of a Network Operation Agent supporting a network topology. By going through a chat prompt, you ask the agent to perform diagnosis on the network topology it supports.
+This is a simple show case of a Network Operation Agent supporting a network topology. By using a chat prompt, you ask the agent to check the health of the network and perform troubleshooting if there is any issue. Treat it like an network engineer.
 
 ## Concept
 
