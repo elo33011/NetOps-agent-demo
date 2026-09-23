@@ -185,8 +185,7 @@ Terminal 2: start the agent and ask.
     # re-export the three variables from step 8 here
     python3 agent_ollama.py
 ```
-
-At `you>`, type: `hq -> br1 fail, can you tell me why?`
+At `you>`, type: `can you troubleshoot anything wrong with the network ?`
 
 <details>
   <summary>Sample Output</summary>
