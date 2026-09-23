@@ -139,16 +139,36 @@ Install the packages:
 ## Step 4: Setup the agent
 
 Create an Ollama API key in your Ollama account settings (ollama.com/settings/keys) and copy it.
-Set your environment variables:
+Set your environment variables as below: (in this example, we are using the gemma4:31b-cloud which is a free cloud model)
 ```bash
    export OLLAMA_API_KEY="your-key"
    export OLLAMA_MODEL=gemma4:31b-cloud
    export MAX_OUTPUT=8000
    ```
-See which models your account can use, and change `OLLAMA_MODEL` if `gemma4:31b-cloud` isn't listed:
+Change `OLLAMA_MODEL` if `gemma4:31b-cloud` isn't listed:
+
+## Step 5: Launch the agent to confirm it is working.
 ```bash
-   curl -H "Authorization: Bearer $OLLAMA_API_KEY" https://ollama.com/api/tags
+    cd ~/wan-lab && source .venv/bin/activate
+    # re-export the three variables from step 8 here
+    python3 agent_ollama.py
    ```
+<details>
+  <summary>Sample Output</summary>
+
+```  
+wanlab agent ready (model: gemma4:31b-cloud). Type 'quit' to exit.
+
+you> are you working ?
+
+Yes, I am operational. I am ready to help you troubleshoot the WAN lab.
+
+I have access to the intended design (the source of truth) and can run `show` commands on the FRR routers (`hq-edge`, `dc-edge`, `br1-edge`, `br2-edge`, `isp1`, `isp2`) as well as perform `ping` tests from the site hosts.
+
+How can I help you today?
+you>
+```
+</details>
 
 ## Step 5: Run the Demo via two terminals
 
@@ -158,7 +178,6 @@ Terminal 1: inject a fault.
     cd ~/wan-lab
     ./scripts/faults.sh inject wrong-asn
 ```
-
 Terminal 2: start the agent and ask.
 
 ```bash
@@ -168,6 +187,39 @@ Terminal 2: start the agent and ask.
 ```
 
 At `you>`, type: `hq -> br1 fail, can you tell me why?`
+
+<details>
+  <summary>Sample Output</summary>
+
+```
+you> can you troubleshoot anything wrong with the  network ?
+  [tool] show {'command': 'show bgp summary', 'node': 'isp1'}
+  [tool] show {'command': 'show bgp summary', 'node': 'isp2'}
+  [tool] show {'command': 'show bgp summary', 'node': 'br1-edge'}
+
+I have detected a control plane failure affecting **br1-edge**.
+
+### Evidence
+1.  **On `isp1`**: The BGP session to `br1-edge` (172.16.5.2) is in the `Idle` state.
+2.  **On `br1-edge`**: The BGP summary shows the neighbor `172.16.5.1` is configured with **AS 65099**, but the session is `Idle`.
+
+### Root Cause
+There is an **AS number mismatch** on the BGP peering between `br1-edge` and `isp1`.
+*   **Intended Design**: `br1-edge` (AS 65003) should peer with `isp1` (AS 65000).
+*   **Actual Configuration**: `br1-edge` is configured to peer with neighbor 172.16.5.1 using **AS 65099**.
+
+### Proposed Fix
+Correct the remote AS for the neighbor on `br1-edge`:
+
+```conf
+conf t
+router bgp 65003
+  no neighbor 172.16.5.1 remote-as 65099
+  neighbor 172.16.5.1 remote-as 65000
+end
+
+you>
+```
 
 Terminal 1: review and heal.
 
