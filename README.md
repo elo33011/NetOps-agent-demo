@@ -29,10 +29,12 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 ## How the Demo works ?
 
-- The network has been running on the container lab in a healthy state
-- All devices are manually asseessbile via cli (docker exec)
-- We will ask the agent to confirm 
-- Inject a few changes to simulate a failure (by running the failure injection scripts)
+- The network topology was built on container lab. All simulated device (FRR node) are running healthy
+- Devices are asseessbile via cli (docker exec) both manually or by the agent
+- The agent prompt runs in parallel and ready for you to query the status of the network topology
+- We then inject a changes to break the network, causing some kind of issues.
+- As the agent prompt to perform troubleshooting of the issues, and find out the root case, suggest the fix
+- The following faults can be injested.
 
 | Fault | What breaks | Symptom |
 |---|---|---|
@@ -40,9 +42,6 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 | `wrong-asn` | Branch 1's neighbor `remote-as` is changed to 65099 (should be 65000) | BGP session to ISP1 stuck `Idle`; Branch 1 isolated from every other site |
 | `missing-network` | Branch 2's LAN prefix is withdrawn from BGP | BGP session stays `Established`, but Branch 2's LAN is unreachable from everywhere |
 | `latency` | 200 ms delay and 20% loss added to DC's ISP1 link | DC traffic is slow and lossy, but BGP sessions look fine |
-
-- We then ask the agent to perform troubleshooting
-- Revert the changes to restore. (by running the failure recovery scripts)
 
 # How to Run it
 
