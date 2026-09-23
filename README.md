@@ -280,7 +280,7 @@ you>
 ```
 </details>
 
-## Step 5: Run the Demo via two terminals
+## Step 6: Run the Demo via two terminals
 Terminal 2: start the agent and ask.
 
 ```bash
