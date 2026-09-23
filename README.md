@@ -142,10 +142,10 @@ Create an Ollama API key in your Ollama account settings (ollama.com/settings/ke
 Set your environment variables:
 ```bash
    export OLLAMA_API_KEY="your-key"
-   export OLLAMA_MODEL=gpt-oss:20b
+   export OLLAMA_MODEL=gemma4:31b-cloud
    export MAX_OUTPUT=8000
    ```
-See which models your account can use, and change `OLLAMA_MODEL` if `gpt-oss:20b` isn't listed:
+See which models your account can use, and change `OLLAMA_MODEL` if `gemma4:31b-cloud` isn't listed:
 ```bash
    curl -H "Authorization: Bearer $OLLAMA_API_KEY" https://ollama.com/api/tags
    ```
