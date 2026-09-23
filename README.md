@@ -1,6 +1,6 @@
 # NetOps Agent Demo
 
-This is a simple show case of a Network Operation Agent supporting a network topology. By using a chat prompt, you ask the agent to check the health of the network and perform troubleshooting if there is any issue. Treat it like an network engineer.
+This is a simple demonstration of a Network Operation Agent supporting a network topology. By using a chat prompt, you ask the agent to check the health of the network and perform troubleshooting if there is any issue. Treat it like an network engineer.
 
 ## Concept
 
@@ -34,8 +34,18 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 - The agent prompt runs in parallel and ready for you to query the status of the network topology
 - We then inject a changes to break the network, causing some kind of issues.
 - As the agent prompt to perform troubleshooting of the issues, and find out the root case, suggest the fix
-- The following faults can be injested.
+- Only the following commands are allowed as tool
 
+## Tools wired into the agent (`TOOLS` + `DISPATCH` in `agent_ollama.py`)
+
+| Tool | Command it runs | What it's allowed to do |
+|---|---|---|
+| `show` | `vtysh -c "<command>"` on a router | Any command starting with `show `, no shell metacharacters (`;`, `\|`, `&`, `` ` ``, `$`). Covers `show bgp summary`, `show ip route <prefix>`, `show running-config`, `show bgp neighbor <ip>`, `show interface <iface>`, and any other FRR `show ...` subcommand. |
+| `ping` | `ping -c <count> -W 1 <target>` from a host | `target` must be a plain IPv4 address (digits and dots only) |
+| `traceroute` | `traceroute -n -w 1 <target>` from a host | Same IPv4-only restriction as `ping` |
+| `linkstats` | `ip -s link show <iface>` + `tc qdisc show dev <iface>` on a router | `iface` must match `eth<N>`. Reveals kernel-level faults (delay/loss injected via `tc`/netem) that are invisible to any FRR `show` command |
+
+- The following faults can be injested.
 | Fault | What breaks | Symptom |
 |---|---|---|
 | `uplink-down` | HQ's link to ISP1 goes down | HQ fails over to ISP2 as its exit |
