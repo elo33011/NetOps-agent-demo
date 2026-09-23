@@ -45,7 +45,7 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 # How to Run it
 
-## Step 1: Download the ![wan-lab.zip](./wan-lab.svg) Install docker & containerlab in your shell environment
+## Step 1: Download the [wan-lab.zip](./wan-lab.zip) Install docker & containerlab in your shell environment
 Once it is done, confirm this is in place.
 ```bash
 docker run hello-world          # Docker works in WSL2
