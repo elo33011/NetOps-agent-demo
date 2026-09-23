@@ -281,13 +281,6 @@ you>
 </details>
 
 ## Step 5: Run the Demo via two terminals
-
-Terminal 1: inject a fault.
-
-```bash
-    cd ~/wan-lab
-    ./scripts/faults.sh inject wrong-asn
-```
 Terminal 2: start the agent and ask.
 
 ```bash
@@ -295,6 +288,49 @@ Terminal 2: start the agent and ask.
     # re-export the three variables from step 8 here
     python3 agent_ollama.py
 ```
+At `you>`, type: `any issue with the network ?`
+
+<details>
+  <summary> Sample output</summary>
+
+```
+you> any issue with the network ?
+  [tool] show {'command': 'show bgp summary', 'node': 'isp1'}
+  [tool] show {'command': 'show bgp summary', 'node': 'isp2'}
+  [tool] show {'command': 'show bgp summary', 'node': 'hq-edge'}
+  [tool] show {'command': 'show bgp summary', 'node': 'dc-edge'}
+  [tool] show {'command': 'show bgp summary', 'node': 'br1-edge'}
+  [tool] show {'command': 'show bgp summary', 'node': 'br2-edge'}
+  [tool] ping {'host': 'hq-host', 'target': '10.2.0.10'}
+  [tool] ping {'host': 'hq-host', 'target': '10.3.0.10'}
+  [tool] ping {'host': 'hq-host', 'target': '10.4.0.10'}
+
+The network is operating correctly according to the intended design.
+
+**Evidence Observed:**
+1. **Control Plane:** `show bgp summary` on all edge routers and ISP cores confirms that all BGP peering sessions are established (`Up/Down State/PfxRcd` shows active prefixes) and aligned with the design:
+    - `hq-edge` and `dc-edge` have dual-homed connections to both `isp1` and `isp2`.
+    - `br1-edge` is connected to `isp1`.
+    - `br2-edge` is connected to `isp2`.
+    - `isp1` and `isp2` have a healthy iBGP session between them.
+2. **Data Plane:** End-to-end reachability tests from `hq-host` were successful:
+    - Ping to `dc-host` (10.2.0.10): **Success**
+    - Ping to `br1-host` (10.3.0.10): **Success**
+    - Ping to `br2-host` (10.4.0.10): **Success**
+
+**Conclusion:**
+No issues found. The BGP topology is fully converged and data plane traffic is flowing between all sites.
+```
+</details>
+
+Terminal 1: inject a fault.
+
+```bash
+    cd ~/wan-lab
+    ./scripts/faults.sh inject wrong-asn
+```
+Terminal 2: Ask the agent again
+
 At `you>`, type: `can you troubleshoot anything wrong with the network ?`
 
 <details>
