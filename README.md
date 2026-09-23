@@ -220,18 +220,16 @@ end
 
 you>
 ```
+</details>
 
-Terminal 1: review and heal.
+Terminal 1: review the agent log, and restore the fault.
 
 ```bash
     cat agent_audit.log
     ./scripts/faults.sh heal wrong-asn
 ```
 
-```bash
-    cd ~/wan-lab
-    ./scripts/faults.sh heals wrong-asn
-```
+Repeat the same for other support faults
 
 ## Repository Content
 
