@@ -72,7 +72,8 @@ Check it's healthy:
 Expect 6 BGP sessions `Established` and 12 host pairs `OK`. BGP can take up to 30 seconds to come up after deploy.
 
 <details>
-```txt
+
+```
 == hq-edge
 % Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
 Configuration file[/etc/frr/frr.conf] processing failure: 11
@@ -119,10 +120,9 @@ OK   br1 -> br2
 OK   br2 -> hq
 OK   br2 -> dc
 OK   br2 -> br1
-
 ```
-  
 </details>
+
 ## Step 3: Python environment
 Create and activate a venv:
 ```bash
