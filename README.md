@@ -45,7 +45,7 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 # How to Run it
 
-## Step 1: Download the [wan-lab.zip](./wan-lab.zip) Install docker & containerlab in your shell environment
+## Step 1: Install docker & containerlab in your shell environment
 Once it is done, confirm this is in place.
 ```bash
 docker run hello-world          # Docker works in WSL2
@@ -53,7 +53,8 @@ containerlab version            # Containerlab works
 ```
 
 ## Step 2: Build the network topology
-Get the files. Unzip `wan-lab.zip` your home folder:
+Download the [wan-lab.zip](./wan-lab.zip) Unzip it in your home folder:
+
 ```bash
    cd ~
    unzip wan-lab.zip            # sudo apt install -y unzip, if needed
@@ -70,6 +71,58 @@ Check it's healthy:
 
 Expect 6 BGP sessions `Established` and 12 host pairs `OK`. BGP can take up to 30 seconds to come up after deploy.
 
+<details>
+```txt
+== hq-edge
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.1.1      4      65000      3479      3466       19    0    0 2d09h20m            3        1 isp1
+172.16.2.1      4      65000      3472      3460       19    0    0 2d09h33m            3        1 isp2
+== dc-edge
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.3.1      4      65000      3473      3461       13    0    0 2d09h33m            3        1 isp1
+172.16.4.1      4      65000      3472      3461       13    0    0 2d09h33m            3        1 isp2
+== br1-edge
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.5.1      4      65000      2149      2149       18    0    0 1d11h42m            3        4 N/A
+== br2-edge
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.6.1      4      65000      3472      3462       10    0    0 2d09h33m            3        1 isp2
+== isp1
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.0.2      4      65000      3461      3466       12    0    0 2d09h33m            3        3 isp2-ibgp
+172.16.1.2      4      65001      3464      3478       12    0    0 2d09h20m            1        4 hq-edge
+172.16.3.2      4      65002      3461      3474       12    0    0 2d09h33m            1        4 dc-edge
+172.16.5.2      4      65003      3543      3476       12    0    0 1d11h42m            1        4 br1-edge
+== isp2
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Configuration file[/etc/frr/frr.conf] processing failure: 11
+172.16.0.1      4      65000      3465      3461       10    0    0 2d09h33m            3        3 isp1-ibgp
+172.16.2.2      4      65001      3460      3473       10    0    0 2d09h33m            1        4 hq-edge
+172.16.4.2      4      65002      3461      3472       10    0    0 2d09h33m            1        4 dc-edge
+172.16.6.2      4      65004      3462      3473       10    0    0 2d09h33m            1        4 br2-edge
+
+== host reachability
+OK   hq -> dc
+OK   hq -> br1
+OK   hq -> br2
+OK   dc -> hq
+OK   dc -> br1
+OK   dc -> br2
+OK   br1 -> hq
+OK   br1 -> dc
+OK   br1 -> br2
+OK   br2 -> hq
+OK   br2 -> dc
+OK   br2 -> br1
+
+```
+  
+</details>
 ## Step 3: Python environment
 Create and activate a venv:
 ```bash
