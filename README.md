@@ -64,6 +64,116 @@ Deploy the network topology:
 ```bash
    sudo containerlab deploy -t wanlab.clab.yml
    ```
+<details>
+  <summary> Sample Output</summary>
+
+```
+22:02:06 INFO Parsing & checking topology file=wanlab.clab.yml
+22:02:06 INFO Parsing & checking topology file=wanlab.clab.yml
+22:02:06 INFO Destroying lab name=wanlab
+22:02:07 INFO Removed container name=clab-wanlab-br2-host
+22:02:07 INFO Removed container name=clab-wanlab-br1-host
+22:02:07 INFO Removed container name=clab-wanlab-br2-edge
+22:02:07 INFO Removed container name=clab-wanlab-br1-edge
+22:02:07 INFO Removed container name=clab-wanlab-hq-host
+22:02:07 INFO Removed container name=clab-wanlab-hq-edge
+22:02:07 INFO Removed container name=clab-wanlab-isp2
+22:02:07 INFO Removed container name=clab-wanlab-isp1
+22:02:07 INFO Removed container name=clab-wanlab-dc-host
+22:02:07 INFO Removed container name=clab-wanlab-dc-edge
+22:02:07 INFO Removing host entries path=/etc/hosts
+22:02:07 INFO Removing SSH config path=/etc/ssh/ssh_config.d/clab-wanlab.conf
+(.venv) elo@DESKTOP-9CL16MS:~/wan-lab$
+(.venv) elo@DESKTOP-9CL16MS:~/wan-lab$ sudo containerlab deploy -t wanlab.clab.yml
+22:03:35 INFO Containerlab started version=0.79.0
+22:03:35 INFO Parsing & checking topology file=wanlab.clab.yml
+22:03:35 INFO Creating docker network name=wanlab-mgmt IPv4 subnet=172.20.30.0/24 IPv6 subnet="" MTU=0
+22:03:35 INFO Creating lab directory path=/home/elo/wan-lab/clab-wanlab
+22:03:35 INFO Creating container name=isp1
+22:03:35 INFO Creating container name=hq-host
+22:03:35 INFO Creating container name=dc-edge
+22:03:35 INFO Creating container name=dc-host
+22:03:35 INFO Creating container name=br2-edge
+22:03:35 INFO Creating container name=hq-edge
+22:03:36 INFO Created link: dc-edge:eth3 ▪┄┄▪ dc-host:eth1
+22:03:36 INFO Created link: hq-edge:eth1 ▪┄┄▪ isp1:eth2
+22:03:36 INFO Creating container name=br1-host
+22:03:36 INFO Created link: hq-edge:eth3 ▪┄┄▪ hq-host:eth1
+22:03:36 INFO Created link: dc-edge:eth1 ▪┄┄▪ isp1:eth3
+22:03:36 INFO Creating container name=br2-host
+22:03:36 INFO Creating container name=isp2
+22:03:37 INFO Creating container name=br1-edge
+22:03:37 INFO Created link: isp1:eth1 ▪┄┄▪ isp2:eth1
+22:03:37 INFO Created link: hq-edge:eth2 ▪┄┄▪ isp2:eth2
+22:03:37 INFO Created link: br1-edge:eth1 ▪┄┄▪ isp1:eth4
+22:03:37 INFO Created link: dc-edge:eth2 ▪┄┄▪ isp2:eth3
+22:03:37 INFO Created link: br1-edge:eth2 ▪┄┄▪ br1-host:eth1
+22:03:37 INFO Created link: br2-edge:eth2 ▪┄┄▪ br2-host:eth1
+22:03:37 INFO Created link: br2-edge:eth1 ▪┄┄▪ isp2:eth4
+22:03:37 INFO Executed command node=dc-host command="ip addr add 10.2.0.10/24 dev eth1" stdout=""
+22:03:37 INFO Executed command node=hq-host command="ip addr add 10.1.0.10/24 dev eth1" stdout=""
+22:03:37 INFO Executed command node=dc-host command="ip route replace default via 10.2.0.1" stdout=""
+22:03:37 INFO Executed command node=br2-edge command="ip addr add 172.16.6.2/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=hq-host command="ip route replace default via 10.1.0.1" stdout=""
+22:03:37 INFO Executed command node=dc-edge command="ip addr add 172.16.3.2/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=hq-edge command="ip addr add 172.16.1.2/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=br2-edge command="ip addr add 10.4.0.1/24 dev eth2" stdout=""
+22:03:37 INFO Executed command node=isp1 command="ip addr add 172.16.0.1/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=dc-edge command="ip addr add 172.16.4.2/30 dev eth2" stdout=""
+22:03:37 INFO Executed command node=hq-edge command="ip addr add 172.16.2.2/30 dev eth2" stdout=""
+22:03:37 INFO Executed command node=isp1 command="ip addr add 172.16.1.1/30 dev eth2" stdout=""
+22:03:37 INFO Executed command node=dc-edge command="ip addr add 10.2.0.1/24 dev eth3" stdout=""
+22:03:37 INFO Executed command node=hq-edge command="ip addr add 10.1.0.1/24 dev eth3" stdout=""
+22:03:37 INFO Executed command node=isp1 command="ip addr add 172.16.3.1/30 dev eth3" stdout=""
+22:03:37 INFO Executed command node=isp1 command="ip addr add 172.16.5.1/30 dev eth4" stdout=""
+22:03:37 INFO Executed command node=br1-host command="ip addr add 10.3.0.10/24 dev eth1" stdout=""
+22:03:37 INFO Executed command node=br1-host command="ip route replace default via 10.3.0.1" stdout=""
+22:03:37 INFO Executed command node=br2-host command="ip addr add 10.4.0.10/24 dev eth1" stdout=""
+22:03:37 INFO Executed command node=br1-edge command="ip addr add 172.16.5.2/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=isp2 command="ip addr add 172.16.0.2/30 dev eth1" stdout=""
+22:03:37 INFO Executed command node=br1-edge command="ip addr add 10.3.0.1/24 dev eth2" stdout=""
+22:03:37 INFO Executed command node=br2-host command="ip route replace default via 10.4.0.1" stdout=""
+22:03:37 INFO Executed command node=isp2 command="ip addr add 172.16.2.1/30 dev eth2" stdout=""
+22:03:37 INFO Executed command node=isp2 command="ip addr add 172.16.4.1/30 dev eth3" stdout=""
+22:03:37 INFO Executed command node=isp2 command="ip addr add 172.16.6.1/30 dev eth4" stdout=""
+22:03:37 INFO Adding host entries path=/etc/hosts
+22:03:38 INFO Adding SSH config for nodes path=/etc/ssh/ssh_config.d/clab-wanlab.conf
+╭──────────────────────┬────────────────────────────────────┬─────────┬────────────────╮
+│         Name         │             Kind/Image             │  State  │ IPv4/6 Address │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-br1-edge │ linux                              │ running │ 172.20.30.11   │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-br1-host │ linux                              │ running │ 172.20.30.8    │
+│                      │ ghcr.io/srl-labs/network-multitool │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-br2-edge │ linux                              │ running │ 172.20.30.6    │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-br2-host │ linux                              │ running │ 172.20.30.10   │
+│                      │ ghcr.io/srl-labs/network-multitool │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-dc-edge  │ linux                              │ running │ 172.20.30.7    │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-dc-host  │ linux                              │ running │ 172.20.30.3    │
+│                      │ ghcr.io/srl-labs/network-multitool │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-hq-edge  │ linux                              │ running │ 172.20.30.4    │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-hq-host  │ linux                              │ running │ 172.20.30.5    │
+│                      │ ghcr.io/srl-labs/network-multitool │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-isp1     │ linux                              │ running │ 172.20.30.2    │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+├──────────────────────┼────────────────────────────────────┼─────────┼────────────────┤
+│ clab-wanlab-isp2     │ linux                              │ running │ 172.20.30.9    │
+│                      │ quay.io/frrouting/frr:10.2.1       │         │ N/A            │
+╰──────────────────────┴────────────────────────────────────┴─────────┴────────────────╯
+```
+</details>
+
 Check it's healthy:
 ```bash
    ./scripts/verify.sh
