@@ -29,9 +29,9 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 
 ## How the Demo works ?
 
-- The network topology was built on container lab. All simulated device (FRR node) are running healthy
-- Devices are asseessbile via cli (docker exec) both manually or by the agent
-- The agent prompt runs in parallel and ready for you to query the status of the network topology
+- The network topology was built on container lab. All simulated device (FRR node) are running healthy at the start
+- Devices are asseessbile via cli (docker exec) both manually or by the agent using the tools provided
+- The agent prompt runs and ready for you to query the status of the network topology
 - We then inject a changes to break the network, causing some kind of issues.
 - As the agent prompt to perform troubleshooting of the issues, and find out the root case, suggest the fix
 - Only the following commands are allowed as tool
