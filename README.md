@@ -43,7 +43,7 @@ Dual-homed sites prefer isp1 (local-pref 200) and only advertise their own LAN
 | `traceroute` | `traceroute -n -w 1 <target>` from a host | Same IPv4-only restriction as `ping` |
 | `linkstats` | `ip -s link show <iface>` + `tc qdisc show dev <iface>` on a router | `iface` must match `eth<N>`. Reveals kernel-level faults (delay/loss injected via `tc`/netem) that are invisible to any FRR `show` command |
 
-- The following faults can be injested.
+- The following faults can be injected.
 
 | Fault | What breaks | Symptom |
 |---|---|---|
